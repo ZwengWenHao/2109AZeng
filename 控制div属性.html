@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" userscalable='no'>
+    <title></title>
+    <style>
+        .box {
+            width: 300px;
+            margin: auto;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .div {
+            width: 200px;
+            height: 200px;
+            background: black;
+            margin: auto;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="top">
+            <button id="but1">变宽</button>
+            <button id="but2">变高</button>
+            <button id="but3">变色</button>
+            <button id="but4">隐藏</button>
+            <button id="but5">重置</button>
+        </div>
+        <div class="div">
+
+        </div>
+    </div>
+
+</body>
+<script>
+    let but1 = document.querySelector('#but1')
+    let but2 = document.querySelector('#but2')
+    let but3 = document.querySelector('#but3')
+    let but4 = document.querySelector('#but4')
+    let but5 = document.querySelector('#but5')
+    let div = document.querySelector('.div')
+    // 点击改变宽度
+    but1.onclick = function () {
+        div.style.width = 400 + 'px'
+    }
+    // 点击改变高度
+    but2.onclick = function () {
+        div.style.height = 400 + 'px'
+    }
+    // 点击改变颜色
+    but3.onclick = function () {
+        div.style.background = 'red'
+    }
+    // 点击隐藏盒子
+    but4.onclick = function () {
+        div.style.display = 'none'
+    }
+    // 点击重置盒子
+    but5.onclick = function () {
+        div.style.display = 'block'
+        div.style.width = 200 + 'px'
+        div.style.height = 200 + 'px'
+        div.style.background = '#000000'
+    }
+
+</script>
+
+</html>
