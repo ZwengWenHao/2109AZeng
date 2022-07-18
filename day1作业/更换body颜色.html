@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .add1 {
+            width: 20px;
+            height: 20px;
+            background: red;
+        }
+
+        .add2 {
+            width: 20px;
+            height: 20px;
+            background: green;
+        }
+
+        .add3 {
+            width: 20px;
+            height: 20px;
+            background: black;
+        }
+    </style>
+</head>
+
+<body id="body">
+    <div class="box">
+        <div class="add1"></div>
+        <div class="add2"></div>
+        <div class="add3"></div>
+    </div>
+</body>
+<script>
+    let body = document.querySelector('#body')
+    let add1 = document.querySelector('.add1')
+    let add2 = document.querySelector('.add2')
+    let add3 = document.querySelector('.add3')
+    // 点击切换颜色
+    add1.onclick = function () {
+        body.style.background = 'red'
+    }
+    add2.onclick = function () {
+        body.style.background = 'green'
+    }
+    add3.onclick = function () {
+        body.style.background = 'black'
+    }
+</script>
+
+</html>

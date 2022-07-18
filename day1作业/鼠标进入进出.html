@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 300px;
+            height: 300px;
+            border: 5px solid red;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        鼠标进入离开事件
+    </div>
+</body>
+<script>
+
+    let box = document.querySelector('.box')
+    // 鼠标进入
+    box.onmouseover = function () {
+        box.style.background = 'red'
+    }
+    // 鼠标离开
+    box.onmouseout = function () {
+        box.style.background = ''
+    }
+
+</script>
+
+</html>
