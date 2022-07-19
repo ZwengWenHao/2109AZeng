@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        img {
+            opacity: 0.5;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        ul {
+            width: 390px;
+            margin: auto;
+        }
+
+        li {
+            float: left;
+            border: 1px red solid;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <ul>
+            <li><img src="./img/1.jpg" alt=""></li>
+            <li><img src="./img/1.jpg" alt=""></li>
+            <li><img src="./img/1.jpg" alt=""></li>
+            <li><img src="./img/1.jpg" alt=""></li>
+            <li><img src="./img/1.jpg" alt=""></li>
+            <li><img src="./img/1.jpg" alt=""></li>
+        </ul>
+    </div>
+</body>
+<script>
+    let li = document.querySelectorAll('ul li')
+    let img = document.querySelectorAll('img')
+    console.log(img);
+    for (let j = 0; j < img.length; j++) {
+        // 鼠标进入
+        img[j].onmouseenter = function () {
+            img[j].style.opacity = 1
+        }
+        // 鼠标离开
+        img[j].onmouseout = function () {
+            img[j].style.opacity = 0.5
+        }
+    }
+</script>
+
+</html>

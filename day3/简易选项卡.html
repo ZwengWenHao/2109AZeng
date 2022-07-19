@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .top {
+            display: flex;
+            background: black;
+        }
+
+        p {
+            margin-left: 30px;
+            line-height: 30px;
+            color: white;
+            width: 80px;
+            text-align: center;
+        }
+
+        .text1,
+        .text2,
+        .text3 {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="top">
+            <p>第一节课</p>
+            <p>第二节课</p>
+            <p>第三节课</p>
+        </div>
+        <ul class="text1">
+            <li>第一页面</li>
+            <li>网页特效原理分析</li>
+            <li>网页特效原理分析</li>
+            <li>网页特效原理分析</li>
+            <li>网页特效原理分析</li>
+            <li>网页特效原理分析</li>
+            <li>网页特效原理分析</li>
+        </ul>
+        <ul class="text1">
+            <li>第二页面</li>
+            <li>网页特效原理分析</li>
+            <li>网页特效原理分析</li>
+            <li>网页特效原理分析</li>
+            <li>网页特效原理分析</li>
+            <li>网页特效原理分析</li>
+            <li>网页特效原理分析</li>
+            <li>网页特效原理分析</li>
+            <li>网页特效原理分析</li>
+            <li>网页特效原理分析</li>
+        </ul>
+        <ul class="text1">
+            <li>第三页面</li>
+            <li>网页特效原理分析</li>
+            <li>网页特效原理分析</li>
+            <li>网页特效原理分析</li>
+            <li>网页特效原理分析</li>
+            <li>网页特效原理分析</li>
+            <li>网页特效原理分析</li>
+        </ul>
+    </div>
+</body>
+<script>
+    let p = document.querySelectorAll('p')
+    let text1 = document.querySelectorAll('.text1')
+    console.log(p);
+    for (let i = 0; i < p.length; i++) {
+        p[i].onmouseenter = function () {
+            p[i].style.background = '#ffffff'
+            p[i].style.color = 'black'
+            text1[i].style.display = 'block'
+        }
+        p[i].onmouseleave = function () {
+            p[i].style.background = ''
+            p[i].style.color = ''
+            text1[i].style.display = 'none'
+        }
+    }
+</script>
+
+</html>

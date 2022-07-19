@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 500px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <input class="inp" type="text"><span>输入数字求和，数字之间用边角","号隔开</span>
+
+        <p><button>求和</button>
+        <div class="text"></div>
+        </p>
+
+    </div>
+</body>
+<script>
+    let inp = document.getElementsByClassName('inp')
+    let but = document.querySelector('button')
+    let texts = document.querySelector('.text')
+    but.onclick = function () {
+        let text = inp[0].value.split(',')
+        let num = 0
+        for (let uu in text) {
+            num += parseInt(text[uu])
+            // console.log(num);
+            texts.innerHTML = num
+        }
+    }
+
+</script>
+
+</html>
