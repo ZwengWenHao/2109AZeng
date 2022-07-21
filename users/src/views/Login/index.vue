@@ -13,6 +13,7 @@
           </el-form-item>
           <el-form-item prop="password">
             <el-input
+              type="password"
               prefix-icon="el-icon-unlock"
               placeholder="密码"
               v-model="LoginRuleForm.password"
@@ -66,12 +67,26 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           logininfo(this.LoginRuleForm).then((res) => {
-            if (res.data.meta.status == 200) {
-              this.$router.push("/home");
+            // 当登录状态为200时
+            if (res.meta.status == 200) {
+              // 登录成功提示
+              this.$message({
+                message: "恭喜你，登录成功",
+                type: "success",
+              });
+              // 存储token
+              localStorage.setItem("token", res.data.token);
+              // 跳转页面
+              this.$router.push({ path: "/home" });
+            } else {
+              this.$message({
+                showClose: true,
+                message: "账号密码错误",
+                type: "error",
+              });
             }
           });
         } else {
-          console.log("error submit!!");
           return false;
         }
       });
@@ -102,6 +117,7 @@ export default {
     text-align: center;
     padding: 0 30px;
     box-sizing: border-box;
+    box-shadow: 0 0 3px;
     h2 {
       margin: 30px 0;
     }
