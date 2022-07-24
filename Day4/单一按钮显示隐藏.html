@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .box {
+            width: 200px;
+            margin: auto;
+        }
+
+        .top {
+            background: #b6b9c7;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+        }
+
+        ul {
+            background: #e0e2eb;
+            /* display: none; */
+        }
+
+        li {
+            border: 1px solid white;
+        }
+
+        .a1 {
+            width: 0;
+            height: 0;
+            border-top: 10px solid black;
+            border-bottom: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-left: 8px solid transparent;
+        }
+
+        .add {
+            display: none;
+        }
+
+        .a2 {
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 8px solid black;
+            border-right: 8px solid transparent;
+            border-left: 8px solid transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="top">
+            <span> 播放列表...</span>
+            <div class="right">
+                <p class="a1"></p>
+                <p class="a2 add"></p>
+            </div>
+        </div>
+        <ul>
+            <li>歌名1</li>
+            <li>歌名2</li>
+            <li>歌名3</li>
+            <li>歌名4</li>
+            <li>歌名5</li>
+            <li>歌名6</li>
+        </ul>
+    </div>
+</body>
+<script>
+    // 按钮1
+    let a1 = document.querySelector('.a1')
+    // 按钮2
+    let a2 = document.querySelector('.a2')
+    // 歌词
+    let ul = document.querySelector('ul')
+    // 切换时的状态
+    let flg = true
+    // 点击按钮1
+    a1.onclick = function () {
+        // 取反
+        flg = !flg
+        if (flg == true) {
+            // 按钮1隐藏
+            a1.style.display = 'none'
+            // 按钮2显示
+            a2.style.display = 'block'
+            // 歌单隐藏
+            ul.className = 'add'
+        }
+
+    }
+    // 当点击按钮2操作跟按钮1相反
+    a2.onclick = function () {
+        flg = !flg
+        if (flg == false) {
+            a1.style.display = 'block'
+            a2.style.display = 'none'
+            ul.className = ''
+        }
+
+    }
+</script>
+
+</html>

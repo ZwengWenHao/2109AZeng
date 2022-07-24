@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            margin: auto;
+            width: 360px;
+            background: #d6cdcd;
+            padding-bottom: 20px;
+        }
+
+        ul {
+            width: 360px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        li {
+            list-style: none;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            background: black;
+            color: white;
+            margin: 5px;
+        }
+
+        p {
+            margin: 5px;
+            height: 50px;
+            flex: 1;
+            background: #867676;
+            display: none;
+            background: white;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .status {
+            display: none;
+        }
+
+        .a1 {
+            background: white;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <ul>
+            <li class="a1">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+            <li>11</li>
+            <li>12</li>
+
+        </ul>
+        <div class="footer">
+            <P class="active">这是一段文字1</P>
+            <P>这是一段文字2</P>
+            <P>这是一段文字3</P>
+            <P>这是一段文字4</P>
+            <P>这是一段文字5</P>
+            <P>这是一段文字6</P>
+            <P>这是一段文字7</P>
+            <P>这是一段文字8</P>
+            <P>这是一段文字9</P>
+            <P>这是一段文字10</P>
+            <P>这是一段文字11</P>
+            <P>这是一段文字12</P>
+        </div>
+    </div>
+</body>
+<script>
+    // 所有的时间
+    let li = document.querySelectorAll('ul li')
+    // 所有对应的文字
+    let p = document.querySelectorAll('p')
+    for (let i = 0; i < li.length; i++) {
+        // 保存下标
+        li[i].index = i
+        li[i].onmouseenter = function () {
+            for (var n in li) li[n].className = ''
+            this.className = 'a1'
+            for (var s in p) p[s].className = ''
+            p[this.index].className = 'active'
+        }
+        li[i].onmouseout = function () {
+            li[i].style.background = ''
+        }
+    }
+</script>
+
+</html>
