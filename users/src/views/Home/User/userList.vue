@@ -14,7 +14,7 @@
       ></el-button>
     </el-input>
 
-    <el-button class="but" type="primary" @click="over">主要按钮</el-button>
+    <el-button class="but" type="primary" @click="over">添加用户</el-button>
 
     <!-- 表格 -->
     <template>
