@@ -9,15 +9,18 @@
       </el-header>
       <el-container>
         <!-- 侧边栏部分 -->
-        <el-aside width="200px">
+        <el-aside :width="flgs == true ? '65px' : '200px'">
+          <span class="el-icon-s-operation" @click="over"></span>
           <el-menu
-            default-active="125"
+            :default-active="$route.path"
+            open="110"
             class="el-menu-vertical-demo"
             background-color="#545c64"
             text-color="#fff"
             active-text-color="#ffd04b"
             router
             :unique-opened="true"
+            :collapse="flgs"
           >
             <el-submenu
               :index="item.id + ''"
@@ -43,8 +46,11 @@
               <el-breadcrumb-item :to="{ path: '/home' }"
                 >首页</el-breadcrumb-item
               >
-              <el-breadcrumb-item>用户管理</el-breadcrumb-item>
-              <el-breadcrumb-item>用户列表</el-breadcrumb-item>
+              <el-breadcrumb-item
+                v-for="(item, index) in $route.meta.list"
+                :key="index"
+                >{{ item.name }}</el-breadcrumb-item
+              >
             </el-breadcrumb>
           </div>
           <router-view />
@@ -60,11 +66,12 @@ export default {
   data() {
     return {
       asideInfo: [],
+      flgs: false,
     };
   },
   created() {
     asideInfo().then((res) => {
-      console.log(res);
+      // console.log(res);
       this.asideInfo = res.data;
     });
   },
@@ -74,6 +81,9 @@ export default {
       localStorage.removeItem("token");
       this.$router.push("/");
     },
+    over() {
+      this.flgs = !this.flgs;
+    },
   },
 };
 </script>
@@ -81,6 +91,9 @@ export default {
 <style lang="scss" scoped>
 .userList {
   margin-bottom: 15px;
+}
+.el-icon-s-operation {
+  cursor: pointer;
 }
 .home {
   width: 99%;
@@ -103,12 +116,15 @@ export default {
     background-color: #d3dce6;
     color: #333;
     text-align: center;
-    height: 640px;
+    height: 680px;
   }
   .el-main {
     background-color: #e9eef3;
     color: #333;
     height: 690px;
+  }
+  .el-menu {
+    height: 650px;
   }
 }
 </style>

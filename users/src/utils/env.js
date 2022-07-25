@@ -10,6 +10,7 @@ export default {
     },
     // 线上
     perod: {
-        baseURl: 'http://www.ysqorz.top:8888/api/private/v1'
+        // baseURl: 'http://www.ysqorz.top:8888/api/private/v1'
+        baseURl: 'http://175.27.228.178:3434/api/private/v1/'
     },
 }

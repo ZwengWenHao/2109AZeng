@@ -5,6 +5,7 @@
       placeholder="请输入内容"
       v-model="page.query"
       class="input-with-select"
+      @input="out"
     >
       <el-button
         slot="append"
@@ -105,17 +106,20 @@
         <!-- 输入框 -->
         <el-form>
           <el-form-item>
-            <p>当前用户：</p>
-            <p class="all">当前角色：</p>
+            <p>当前用户：{{ name }}</p>
+            <p class="all">当前角色：{{ role }}</p>
             分配角色：
             <el-select
-              v-model="region"
+              v-model="value"
               @change="changeVal"
               placeholder="请选择活动区域"
             >
-              <el-option label="主管" value="主管"></el-option>
-              <el-option label="测试角色" value="测试角色"></el-option>
-              <el-option label="会员" value="会员"></el-option>
+              <el-option
+                :label="item.roleDesc"
+                v-for="(item, index) in options"
+                :key="index"
+                :value="item.id"
+              ></el-option>
             </el-select>
           </el-form-item>
         </el-form>
@@ -149,6 +153,7 @@ import {
   updateInfo,
   updateUser,
   updaterole,
+  getroles,
 } from "../../../utils/http";
 export default {
   data() {
@@ -175,7 +180,12 @@ export default {
       dialogVisible: false,
       dialogVisibles: false,
       dialogVisibleover: false,
-      region: "",
+      value: "",
+      name: "",
+      role: "",
+      roleName: "",
+      // 下拉框数据
+      options: [],
       page: {
         query: "",
         pagenum: 1,
@@ -234,14 +244,29 @@ export default {
     // 点击设置
     install(val) {
       this.dialogVisibleover = true;
+      this.name = val.username;
+      this.role = val.role_name;
       this.myIds = val.id;
+      // 角色列表
+      getroles().then((res) => {
+        console.log(res);
+        this.options = res.data;
+      });
     },
     changeVal(val) {
       console.log(val);
+      this.roleName = val;
     },
+    // 点击设置确定
     upchange() {
-      updaterole({ id: this.myIds }).then((res) => {
-        console.log(res);
+      this.dialogVisibleover = false;
+
+      let obj = {
+        id: this.myIds,
+        rid: this.roleName,
+      };
+      updaterole(obj).then((res) => {
+        this.getuser_info();
       });
     },
     // 封装数据请求
@@ -267,6 +292,8 @@ export default {
     },
     // 点击确定提交数据
     addUser(formName) {
+      this.dialogVisible = false;
+
       getUserInfo(this.form).then((res) => {
         console.log(res);
         this.getuser_info();
@@ -299,6 +326,11 @@ export default {
     // 点击搜索
     search() {
       this.getuser_info();
+    },
+    out() {
+      if (this.page.query == "") {
+        this.getuser_info();
+      }
     },
     // 修改开关状态
     update(val) {

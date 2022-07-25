@@ -16,6 +16,7 @@ export function asideInfo() {
         method: 'GET',
     })
 }
+
 // 用户列表数据
 export function getUser(params) {
     return reque({
@@ -32,6 +33,7 @@ export function getUserInfo(data) {
         data
     })
 }
+
 // 用户删除数据
 export function delInfo(data) {
     return reque({
@@ -40,6 +42,7 @@ export function delInfo(data) {
         data
     })
 }
+
 // 用户状态数据
 export function updateInfo(data) {
     console.log(data);
@@ -62,16 +65,126 @@ export function updateUser(data) {
     })
 }
 
+// 角色列表数据
+export function getroles() {
+    return reque({
+        url: `roles`,
+        method: 'get',
+    })
+}
+
 // 分配角色
 export function updaterole(data) {
     console.log(data);
-    let { id } = data
+    let { id, rid } = data
     return reque({
-        url: `users/${id}`,
+        url: `users/${id}/role`,
         method: 'put',
         data
     })
 }
+
+// 权限列表
+export function getRolelist() {
+    return reque({
+        url: `rights/list`,
+        method: 'get',
+    })
+}
+
+// 角色列表
+export function getRoles() {
+    return reque({
+        url: `roles`,
+        method: 'get',
+    })
+}
+
+// 删除角色列表
+export function delRoles(data) {
+    return reque({
+        url: `roles/${data}`,
+        method: 'delete',
+        data
+    })
+}
+
+// 删除指定权限
+export function RolesDel(data) {
+    let { roleId, rightId } = data
+    return reque({
+        url: `roles/${roleId}/rights/${rightId}`,
+        method: 'delete',
+        data
+    })
+}
+
+// 权限列表数据
+export function getRights() {
+    return reque({
+        url: `rights/tree`,
+        method: 'get',
+    })
+}
+
+// 添加角色
+export function addRoles(data) {
+    return reque({
+        url: `roles`,
+        method: 'post',
+        data
+    })
+}
+
+// 修改角色
+export function updateRoles(data) {
+    let { id } = data
+    return reque({
+        url: `roles/${id}`,
+        method: 'put',
+        data
+    })
+}
+
+// 商品管理
+// 商品分类数据
+export function getcategories(params) {
+    return reque({
+        url: `categories`,
+        method: 'get',
+        params
+    })
+}
+
+// 商品列表
+export function getGoods(params) {
+    return reque({
+        url: `goods`,
+        method: 'get',
+        params
+    })
+}
+// 订单列表
+export function getOrders(params) {
+    return reque({
+        url: `orders`,
+        method: 'get',
+        params
+    })
+}
+
+// 数据报表
+export function getReports() {
+    return reque({
+        url: `reports/type/1`,
+        method: 'get',
+    })
+}
+
+
+
+
+
 
 
 

@@ -1,7 +1,12 @@
 <template>
   <div class="home">
     <div class="box">
-      <h2>电商后台管理</h2>
+      <h2>
+        <el-avatar
+          :size="60"
+          src="https://img0.baidu.com/it/u=1694074520,2517635995&fm=253&app=138&size=w931&n=0&f=JPEG&fmt=auto?sec=1658768400&t=3bf1d829d0130ed46d60271629bf2e5e"
+        ></el-avatar>
+      </h2>
       <div class="userinfo">
         <el-form ref="LoginRuleForm" :rules="rules" :model="LoginRuleForm">
           <el-form-item prop="username">
@@ -119,7 +124,8 @@ export default {
     box-sizing: border-box;
     box-shadow: 0 0 3px;
     h2 {
-      margin: 30px 0;
+      margin-top: 20px;
+      margin-bottom: 5px;
     }
     .userinfo {
       height: 100%;
@@ -131,6 +137,7 @@ export default {
       }
       .el-button {
         width: 90%;
+        margin-top: 15px;
       }
     }
   }
