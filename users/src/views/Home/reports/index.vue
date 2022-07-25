@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.reports_const {
+.reports {
   width: 100%;
   background: white;
   padding: 10px;

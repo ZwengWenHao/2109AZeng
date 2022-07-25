@@ -127,6 +127,16 @@ export function getRights() {
     })
 }
 
+// 分配权限数据
+export function rolesRights(data) {
+    let { roleId } = data
+    return reque({
+        url: `roles/${roleId}/rights`,
+        method: 'post',
+        data
+    })
+}
+
 // 添加角色
 export function addRoles(data) {
     return reque({
@@ -164,6 +174,16 @@ export function getGoods(params) {
         params
     })
 }
+
+// 分类参数
+export function getCategories(id, params) {
+    return reque({
+        url: `categories/${id}/attributes`,
+        method: 'get',
+        params
+    })
+}
+
 // 订单列表
 export function getOrders(params) {
     return reque({

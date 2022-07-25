@@ -53,7 +53,7 @@
             <el-button type="text" size="small" @click="handleDel(scope.row)"
               >删除</el-button
             >
-            <el-button type="text" size="small" @click="updateRights"
+            <el-button type="text" size="small" @click="updateRights(scope.row)"
               >分配权限</el-button
             >
           </template>
@@ -81,20 +81,20 @@
         <span>
           <!-- 树枝分布图 -->
           <el-tree
+            :default-expand-all="true"
             :data="RightsList"
             show-checkbox
             node-key="id"
-            :default-expanded-keys="[2, 3]"
-            :default-checked-keys="[5]"
+            ref="tree"
+            :default-checked-keys="keys"
             :props="defaultProps"
+            @check="overs"
           >
           </el-tree>
         </span>
         <span slot="footer" class="dialog-footer">
           <el-button @click="dialogVisible_a = false">取 消</el-button>
-          <el-button type="primary" @click="dialogVisible_a = false"
-            >确 定</el-button
-          >
+          <el-button type="primary" @click="addRights">确 定</el-button>
         </span>
       </el-dialog>
     </div>
@@ -109,6 +109,7 @@ import {
   addRoles,
   updateRoles,
   getRights,
+  rolesRights,
 } from "@/utils/http";
 export default {
   data() {
@@ -117,8 +118,14 @@ export default {
       dialogVisible: false,
       dialogVisible_a: false,
       title: "添加角色",
+      keys: [],
       myroleid: "",
+      // 分配权限角色id
+      roleId: "",
       // 树状图数据
+      rids: "",
+      // 数组转成字符串
+      arrys: [],
       RightsList: [],
       defaultProps: {
         children: "children",
@@ -229,11 +236,54 @@ export default {
       this.form = {};
     },
     // 分配权限
-    updateRights() {
+    updateRights(val) {
+      this.roleId = val.id;
       this.dialogVisible_a = true;
       getRights().then((res) => {
         console.log(res);
         this.RightsList = res.data;
+      });
+      this.recursion(val, this.keys);
+    },
+
+    // 递归方法
+    recursion(row, keys) {
+      if (!row.children) {
+        return keys.push(row.id);
+      }
+      row.children.forEach((ele) => {
+        this.recursion(ele, keys);
+      });
+    },
+
+    // 点击事件树枝分配
+    overs() {
+      // console.log(this.$refs.tree.getCheckedKeys());
+      // console.log(this.$refs.tree.getHalfCheckedKeys());
+      // 选中的权限 都展开在同一个数组中
+      this.arrys = [
+        ...this.$refs.tree.getCheckedKeys(),
+        ...this.$refs.tree.getHalfCheckedKeys(),
+      ].join(",");
+      console.log(this.arrys);
+    },
+    // 点击确定分配权限
+    addRights() {
+      this.dialogVisible_a = false;
+      // 参数id
+      let obj = {
+        roleId: this.roleId,
+        rids: this.arrys,
+      };
+      // 分配权限接口
+      rolesRights(obj).then((res) => {
+        console.log(res);
+        this.$message({
+          message: "分配权限成功",
+          type: "success",
+        });
+        // 从新渲染页面
+        this.getdata();
       });
     },
   },

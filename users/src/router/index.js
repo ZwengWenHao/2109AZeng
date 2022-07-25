@@ -11,7 +11,11 @@ const routes = [
   {
     path: '/',
     name: 'Login',
-    component: () => import('../views/Login/index.vue')
+    component: () => import('../views/Login/index.vue'),
+    beforeEach: (to, form, next) => {
+      let toekn = localStorage.getItem('toekn')
+      console.log(to, form, next);
+    }
   },
   {
     path: '/home',
